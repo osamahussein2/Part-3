@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterControl : MonoBehaviour
 {
@@ -31,6 +32,14 @@ public class CharacterControl : MonoBehaviour
         if (SelectedVillager != null)
         {
             villagerText.text = SelectedVillager.GetType().ToString();
+        }
+    }
+
+    public static void ScaleSelectedVillager(float scale)
+    {
+        if (SelectedVillager != null)
+        {
+            SelectedVillager.gameObject.transform.localScale = new Vector2(scale, scale);
         }
     }
 

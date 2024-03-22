@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Thief : Villager
 {
     public TextMeshProUGUI thiefText;
+
+    public Slider slider;
 
     public GameObject knifePrefab;
     public Transform spawnPoint1;
@@ -15,7 +18,11 @@ public class Thief : Villager
     Coroutine dashing;
     float dashSpeed = 7;
 
-    public static Villager SelectedVillager { get; private set; }
+    protected override void Update()
+    {
+        base.Update();
+        CharacterControl.ScaleSelectedVillager(slider.value);
+    }
 
     public override void Selected(bool value)
     {
