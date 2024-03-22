@@ -1,15 +1,40 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Thief : Villager
 {
+    public TextMeshProUGUI thiefText;
+
     public GameObject knifePrefab;
     public Transform spawnPoint1;
     public Transform spawnPoint2;
     Coroutine dashing;
     float dashSpeed = 7;
+
+    public static Villager SelectedVillager { get; private set; }
+
+    public override void Selected(bool value)
+    {
+        base.Selected(value);
+
+        if (!value)
+        {
+            thiefText.text = "";
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        CharacterControl.SetSelectedVillager(this);
+        clickingOnSelf = true;
+
+        CharacterControl.SelectedVillagerName(thiefText);
+    }
+
     protected override void Attack()
     {
         if(dashing != null)

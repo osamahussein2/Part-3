@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CharacterControl : MonoBehaviour
@@ -23,6 +24,14 @@ public class CharacterControl : MonoBehaviour
         SelectedVillager = villager;
         SelectedVillager.Selected(true);
         Instance.currentSelection.text = villager.ToString();
+    }
+
+    public static void SelectedVillagerName(TextMeshProUGUI villagerText)
+    {
+        if (SelectedVillager != null)
+        {
+            villagerText.text = SelectedVillager.GetType().ToString();
+        }
     }
 
     /*private void Update()

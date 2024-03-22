@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,7 +9,7 @@ public class Villager : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
 
-    bool clickingOnSelf;
+    protected bool clickingOnSelf;
     bool isSelected;
     public GameObject highlight;
 
@@ -23,17 +24,17 @@ public class Villager : MonoBehaviour
         destination = transform.position;
         Selected(false);
     }
-    public void Selected(bool value)
+    public virtual void Selected(bool value)
     {
         isSelected = value;
         highlight.SetActive(isSelected);
     }
 
-    private void OnMouseDown()
+    /*private void OnMouseDown()
     {
         CharacterControl.SetSelectedVillager(this);
         clickingOnSelf = true;
-    }
+    }*/
 
     private void OnMouseUp()
     {
