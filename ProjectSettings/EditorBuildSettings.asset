@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Assignment/Scenes/Main Menu.unity
+    guid: 5394e8bc8e094ff49a06c87316c668f1
+  - enabled: 1
+    path: Assets/Assignment/Scenes/How to Play.unity
+    guid: f3994d49ba67fb041a9c27bb795b6b6e
+  - enabled: 1
+    path: Assets/Assignment/Scenes/Flying Robot.unity
+    guid: 6565e5eb67d206a45a3c3258c1b45eef
+  - enabled: 1
+    path: Assets/Assignment/Scenes/Game Over.unity
+    guid: e91e93243d0f2cf419566d999fb13376
+  - enabled: 1
+    path: Assets/Assignment/Scenes/Completed Screen.unity
+    guid: 8d752e114a7d1f2488c8f6c2761e54b8
   m_configObjects: {}
