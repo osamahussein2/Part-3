@@ -7,8 +7,8 @@ using UnityEngine.UIElements;
 
 public class TriggerDoor : MonoBehaviour
 {
-    /* We will need a reference to the red and green doors inside the inspector for making them visible or not
-    visible in the scene */
+    /* Create public game objects of red and green doors to use inside the inspector for making them visible or
+    invisible in the scene */
     public GameObject redDoor;
     public GameObject greenDoor;
 
@@ -28,17 +28,24 @@ public class TriggerDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If at least 1 bee is not destroyed, don't make the green door visible to the player
+        /* If at least 1 bee is not destroyed or 1 plant hasn't been collected yet,
+        don't make the green door visible to the player */
         if (!bees[0].IsDestroyed() || !bees[1].IsDestroyed() || !bees[2].IsDestroyed() || !bees[3].IsDestroyed()
-            || !bees[4].IsDestroyed() || !bees[5].IsDestroyed() || !bees[6].IsDestroyed() || !bees[7].IsDestroyed())
+            || !bees[4].IsDestroyed() || !bees[5].IsDestroyed() || !bees[6].IsDestroyed() || !bees[7].IsDestroyed()
+            || !Plant.collectedPlant1 || !Plant2.collectedPlant2 || !Plant3.collectedPlant3
+            || !Plant4.collectedPlant4 || !Plant5.collectedPlant5 || !Plant6.collectedPlant6
+            || !Plant7.collectedPlant7 || !Plant8.collectedPlant8)
         {
             redDoor.SetActive(true);
             greenDoor.SetActive(false);
         }
 
-        // Else if the player kills and destroys all the bees, make the green door visible to the player
+        /* Else if the player kills and destroys all the bees and collected all the plants,
+        make the green door visible to the player */
         else if (bees[0].IsDestroyed() && bees[1].IsDestroyed() && bees[2].IsDestroyed() && bees[3].IsDestroyed()
-            && bees[4].IsDestroyed() && bees[5].IsDestroyed() && bees[6].IsDestroyed() && bees[7].IsDestroyed())
+            && bees[4].IsDestroyed() && bees[5].IsDestroyed() && bees[6].IsDestroyed() && bees[7].IsDestroyed()
+            && Plant.collectedPlant1 && Plant2.collectedPlant2 && Plant3.collectedPlant3 && Plant4.collectedPlant4
+            && Plant5.collectedPlant5 && Plant6.collectedPlant6 && Plant7.collectedPlant7 && Plant8.collectedPlant8)
         {
             redDoor.SetActive(false);
             greenDoor.SetActive(true);
@@ -48,11 +55,13 @@ public class TriggerDoor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // As long as the red door is visible, tell the player to go back and kill the bees when they reach the door
+        /* As long as the red door is visible, tell the player to go back and kill the bees while
+        collecting all the plants when they reach the door */
         if(redDoor.activeInHierarchy && !greenDoor.activeInHierarchy &&
             collision.gameObject.name == "Robot")
         {
-            Debug.Log("Hey, you haven't killed all the bees. Go back there and kill them now!");
+            Debug.Log("Hey, you haven't killed all the bees and collected all the plants. " +
+                "Go back there and complete your objectives!");
         }
 
         // Once the green door is visible, show the completed screen to the player when they reach the door

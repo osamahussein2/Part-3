@@ -14,9 +14,6 @@ public class ParentBee : MonoBehaviour
     public Collider2D collider1;
     public Collider2D collider2;
 
-    // Use the robot to get the component of Collider2D when the robot collides with the bee
-    public Robot playerRobot;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -68,18 +65,21 @@ public class ParentBee : MonoBehaviour
         during runtime saying its null */
         if (collider1 != null && collider2 != null)
         {
-            /* If the player didn't jump on the bee's head or wings while colliding with the bee, then
-            load the game over scene for the player */
-            if (collider1.IsTouching(playerRobot.GetComponent<Collider2D>()))
+            /* If the player didn't jump on the bee's head or wings while colliding with the bee, then don't
+            increment the bees killed counter for the player and load the game over scene for the player */
+            if (collider1.IsTouching(Robot.playerRobot.GetComponent<Collider2D>()))
             {
+                Robot.beesKilled += 0;
                 SceneManager.LoadScene("Game Over");
             }
 
-            /* If the player did jump on the bee's head or wings while colliding with the bee, then
-            destroy the bee */
-            if (collider2.IsTouching(playerRobot.GetComponent<Collider2D>()))
+            /* If the player did jump on the bee's head or wings while colliding with the bee with either
+            their left leg or right leg, then destroy the bee and add bee kills by 1 */
+            if (collider2.IsTouching(Robot.leftLeg.GetComponent<Collider2D>()) ||
+                collider2.IsTouching(Robot.rightLeg.GetComponent<Collider2D>()))
             {
                 Destroy(gameObject);
+                Robot.beesKilled += 1;
             }
         }
     }
