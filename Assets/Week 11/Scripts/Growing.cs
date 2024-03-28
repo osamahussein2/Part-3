@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using TMPro;
 using UnityEngine;
 
@@ -33,7 +34,19 @@ public class Growing : MonoBehaviour
         coroutine = StartCoroutine(Triangle());
         Circle();
         yield return coroutine;
+        coroutine = StartCoroutine(Circle());
+        Circle();
+        yield return coroutine;
         running -= 1;
+        yield return new WaitForSeconds(1);
+        coroutine = StartCoroutine(Triangle());
+        yield return coroutine;
+
+        while (coroutine != null)
+        {
+            coroutine = StartCoroutine(Circle());
+            yield return coroutine;
+        }
     }
 
     IEnumerator Square()
@@ -70,13 +83,16 @@ public class Growing : MonoBehaviour
 
         running -= 1;
     }
-    void Circle()
+    IEnumerator Circle()
     {
+        running += 1;
 
         float size = 0;
         while (size < 5)
         {
             size += Time.deltaTime;
+
+            yield return null;
             Vector3 scale = new Vector3(size, size, size);
             circle.transform.localScale = scale;
             circleTMP.text = "Cirlce: " + scale;
@@ -84,9 +100,13 @@ public class Growing : MonoBehaviour
         while (size > 0)
         {
             size -= Time.deltaTime;
+
+            yield return null;
             Vector3 scale = new Vector3(size, size, size);
             circle.transform.localScale = scale;
             circleTMP.text = "Cirlce: " + scale;
         }
+
+        running -= 1;
     }
 }
