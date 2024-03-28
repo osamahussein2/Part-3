@@ -27,6 +27,31 @@ public class FlightControl : MonoBehaviour
         coroutine = StartCoroutine(RunLeg(length));
     }
 
+    public void turnHardLeft()
+    {
+        StartCoroutine(Turn(-90));
+    }
+
+    public void turnLeft()
+    {
+        StartCoroutine(Turn(-45));
+    }
+
+    public void goStraight()
+    {
+        StartCoroutine(RunLeg(1));
+    }
+
+    public void turnRight()
+    {
+        StartCoroutine(Turn(45));
+    }
+
+    public void turnHardRight()
+    {
+        StartCoroutine(Turn(90));
+    }
+
     IEnumerator RunLeg(float legLength)
     {
         float time = 0;
