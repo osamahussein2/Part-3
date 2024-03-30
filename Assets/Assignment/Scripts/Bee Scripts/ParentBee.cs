@@ -20,12 +20,6 @@ public class ParentBee : MonoBehaviour
         InitializeVariables(); // Call this function in Start
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void FixedUpdate()
     {
         MoveBee();// Call this function in FixedUpdate
